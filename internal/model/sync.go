@@ -67,6 +67,12 @@ type FileInfo struct {
 	ContentHash string
 	Size        int64
 	Version     int64
+
+	// Parsed from SKILL.md frontmatter
+	MetaName        string
+	MetaDescription string
+	MetaSummary     string
+	MetaTags        []string
 }
 
 func (f FileInfo) Hash() string {

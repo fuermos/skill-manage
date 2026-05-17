@@ -127,6 +127,7 @@ func (c *ToolConfig) DiscoverFiles() ([]model.FileInfo, error) {
 				Content:  content,
 				Size:     info.Size(),
 			}
+			c.parseFrontmatter(&fi)
 			files = append(files, fi)
 			return nil
 		})
@@ -235,4 +236,39 @@ func (c *ToolConfig) WriteFile(relPath string, content []byte) error {
 		return err
 	}
 	return os.WriteFile(fullPath, content, 0644)
+}
+
+func (c *ToolConfig) parseFrontmatter(fi *model.FileInfo) {
+	content := string(fi.Content)
+	if !strings.HasPrefix(content, "---") {
+		fi.MetaName = filepath.Base(fi.Path)
+		return
+	}
+
+	end := strings.Index(content[3:], "---")
+	if end == -1 {
+		fi.MetaName = filepath.Base(fi.Path)
+		return
+	}
+
+	fm := content[3 : 3+end]
+	var meta struct {
+		Name        string   `yaml:"name"`
+		Description string   `yaml:"description"`
+		Summary     string   `yaml:"summary"`
+		Tags        []string `yaml:"tags"`
+	}
+	if err := yaml.Unmarshal([]byte(fm), &meta); err != nil {
+		fi.MetaName = filepath.Base(fi.Path)
+		return
+	}
+
+	if meta.Name != "" {
+		fi.MetaName = meta.Name
+	} else {
+		fi.MetaName = filepath.Base(fi.Path)
+	}
+	fi.MetaDescription = meta.Description
+	fi.MetaSummary = meta.Summary
+	fi.MetaTags = meta.Tags
 }

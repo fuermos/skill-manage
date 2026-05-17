@@ -120,10 +120,13 @@ export namespace main {
 	}
 	export class SkillInfo {
 	    name: string;
+	    display_name: string;
 	    tool: string;
 	    category: string;
 	    size: number;
 	    summary: string;
+	    description: string;
+	    tags: string[];
 	
 	    static createFrom(source: any = {}) {
 	        return new SkillInfo(source);
@@ -132,10 +135,13 @@ export namespace main {
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
 	        this.name = source["name"];
+	        this.display_name = source["display_name"];
 	        this.tool = source["tool"];
 	        this.category = source["category"];
 	        this.size = source["size"];
 	        this.summary = source["summary"];
+	        this.description = source["description"];
+	        this.tags = source["tags"];
 	    }
 	}
 	export class ToolInfo {

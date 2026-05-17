@@ -78,11 +78,14 @@ func (a *App) GetTools() []ToolInfo {
 }
 
 type SkillInfo struct {
-	Name     string `json:"name"`
-	Tool     string `json:"tool"`
-	Category string `json:"category"`
-	Size     int    `json:"size"`
-	Summary  string `json:"summary"`
+	Name        string   `json:"name"`
+	DisplayName string   `json:"display_name"`
+	Tool        string   `json:"tool"`
+	Category    string   `json:"category"`
+	Size        int      `json:"size"`
+	Summary     string   `json:"summary"`
+	Description string   `json:"description"`
+	Tags        []string `json:"tags"`
 }
 
 func (a *App) GetSkills(tool, category, search string) []SkillInfo {
@@ -101,23 +104,33 @@ func (a *App) GetSkills(tool, category, search string) []SkillInfo {
 				continue
 			}
 			baseName := fileBaseOnly(f.Path)
-			if search != "" && !clientContains(baseName, search) {
-				continue
+			displayName := f.MetaName
+			if displayName == "" {
+				displayName = baseName
 			}
-			summary := ""
-			if len(f.Content) > 0 {
+			summary := f.MetaSummary
+			if summary == "" {
+				summary = f.MetaDescription
+			}
+			if summary == "" && len(f.Content) > 0 {
 				end := len(f.Content)
 				if end > 100 {
 					end = 100
 				}
-				summary = string(f.Content[:end])
+				summary = string(f.Content[end:end])
+			}
+			if search != "" && !clientContains(displayName, search) && !clientContains(f.MetaDescription, search) {
+				continue
 			}
 			result = append(result, SkillInfo{
-				Name:     baseName,
-				Tool:     f.Tool,
-				Category: f.Category,
-				Size:     len(f.Content),
-				Summary:  summary,
+				Name:        filepath.Base(f.Path),
+				DisplayName: displayName,
+				Tool:        f.Tool,
+				Category:    f.Category,
+				Size:        len(f.Content),
+				Summary:     summary,
+				Description: f.MetaDescription,
+				Tags:        f.MetaTags,
 			})
 		}
 	}
