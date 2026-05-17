@@ -1,0 +1,36 @@
+# Build outputs
+build/
+bin/
+*.exe
+*.exe~
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Go
+*.test
+*.out
+vendor/
+
+# Node
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Server data
+server-data/
+*.db
+
+# Config (contains tokens)
+skill-sync-config.json
+
+# Temp
+tmp/
+temp/

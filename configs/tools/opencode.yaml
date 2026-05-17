@@ -1,0 +1,24 @@
+name: opencode
+display_name: "OpenCode"
+enabled: true
+local_path:
+  windows: "%USERPROFILE%\\.config\\opencode"
+  linux: "$HOME/.config/opencode"
+  darwin: "$HOME/.config/opencode"
+server_path: "opencode"
+categories:
+  config:
+    local_dir: "."
+    pattern: "opencode.jsonc"
+    priority: high
+  skills:
+    local_dir: "skills"
+    pattern: "**/*.md"
+    priority: high
+ignore:
+  - "**/node_modules/**"
+  - "**/.gitignore"
+  - "**/package.json"
+  - "**/package-lock.json"
+  - "**/bun.lock"
+on_missing: skip

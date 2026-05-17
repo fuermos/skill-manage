@@ -1,0 +1,70 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f14; color: #e0e0e0; min-height: 100vh; }
+#app { max-width: 1200px; margin: 0 auto; }
+
+header { display: flex; align-items: center; padding: 12px 20px; border-bottom: 1px solid #2a2a3a; background: #16161f; position: sticky; top: 0; z-index: 10; flex-wrap: wrap; gap: 12px; }
+header h1 { font-size: 18px; color: #7c5cfc; margin-right: 20px; }
+nav { display: flex; gap: 4px; }
+.tab { background: none; border: none; color: #888; padding: 8px 16px; cursor: pointer; border-radius: 6px; font-size: 13px; transition: .2s; }
+.tab:hover { color: #ccc; background: #1e1e2e; }
+.tab.active { background: #7c5cfc; color: #fff; }
+
+#status-bar { margin-left: auto; display: flex; gap: 16px; font-size: 12px; color: #666; }
+
+main { padding: 20px; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+.card { background: #1a1a28; border: 1px solid #2a2a3a; border-radius: 8px; padding: 16px; }
+.card h3 { font-size: 13px; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px; }
+
+.stat { font-size: 32px; font-weight: 700; color: #7c5cfc; }
+.card small { font-size: 11px; color: #555; }
+
+.toolbar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.toolbar input, .toolbar select { background: #1a1a28; border: 1px solid #2a2a3a; color: #ccc; padding: 8px 12px; border-radius: 6px; font-size: 13px; }
+.toolbar input { min-width: 200px; }
+
+.btn-primary { background: #7c5cfc; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.btn-primary:hover { background: #6b4de6; }
+.btn-secondary { background: #2a2a3a; color: #ccc; border: 1px solid #3a3a4a; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.btn-secondary:hover { background: #3a3a4a; }
+.btn-ghost { background: none; color: #888; border: 1px solid #2a2a3a; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.btn-ghost:hover { color: #ccc; }
+
+.skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.skill-card { background: #1a1a28; border: 1px solid #2a2a3a; border-radius: 8px; padding: 14px; cursor: pointer; transition: .2s; }
+.skill-card:hover { border-color: #7c5cfc; background: #1e1e2e; }
+.skill-card .name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.skill-card .summary { font-size: 12px; color: #888; margin-bottom: 8px; }
+.skill-card .meta { display: flex; gap: 8px; font-size: 11px; color: #555; flex-wrap: wrap; }
+.skill-card .tag { background: #7c5cfc20; color: #7c5cfc; padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+.skill-detail-panel { background: #1a1a28; border: 1px solid #7c5cfc; border-radius: 8px; padding: 20px; }
+.skill-detail-panel h2 { color: #7c5cfc; margin-bottom: 8px; }
+.skill-detail-panel .desc { color: #aaa; line-height: 1.6; margin-bottom: 16px; }
+.skill-detail-panel .tags-bar { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.stats-row .stat-box { text-align: center; }
+.stats-row .stat-box .num { font-size: 24px; font-weight: 700; color: #7c5cfc; }
+.stats-row .stat-box .lbl { font-size: 11px; color: #666; }
+
+.log-area { background: #0f0f14; border: 1px solid #2a2a3a; border-radius: 6px; padding: 12px; font-family: monospace; font-size: 12px; max-height: 300px; overflow-y: auto; color: #888; }
+.log-area .entry { margin-bottom: 4px; }
+.log-area .entry.success { color: #4ade80; }
+.log-area .entry.error { color: #f87171; }
+.log-area .entry.info { color: #7c5cfc; }
+
+.form-group { margin-bottom: 12px; }
+.form-group label { display: block; font-size: 12px; color: #888; margin-bottom: 4px; }
+.form-group input { width: 100%; max-width: 400px; background: #0f0f14; border: 1px solid #2a2a3a; color: #ccc; padding: 8px 12px; border-radius: 6px; font-size: 13px; }
+.form-group input:focus { border-color: #7c5cfc; outline: none; }
+
+.hidden { display: none !important; }
+.back-btn { background: none; border: none; color: #888; cursor: pointer; font-size: 13px; margin-bottom: 12px; }
+.back-btn:hover { color: #ccc; }
+.conn-ok { color: #4ade80; }
+.conn-err { color: #f87171; }

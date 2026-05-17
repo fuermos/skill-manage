@@ -1,0 +1,34 @@
+name: claude
+display_name: "Claude Code"
+enabled: true
+local_path:
+  windows: "%USERPROFILE%\\.claude"
+  linux: "$HOME/.claude"
+  darwin: "$HOME/.claude"
+server_path: "claude"
+categories:
+  skills:
+    local_dir: "skills"
+    pattern: "**/SKILL.md"
+    priority: high
+  rules:
+    local_dir: "rules"
+    pattern: "**/*.md"
+    priority: high
+  agents:
+    local_dir: "agents"
+    pattern: "**/*.md"
+    priority: medium
+  commands:
+    local_dir: "commands"
+    pattern: "**/*.md"
+    priority: medium
+  memories:
+    local_dir: "memories"
+    pattern: "**/*.md"
+    priority: medium
+ignore:
+  - "**/.git/**"
+  - "**/node_modules/**"
+  - "**/learned/**"
+on_missing: skip

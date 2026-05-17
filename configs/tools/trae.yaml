@@ -1,0 +1,24 @@
+name: trae
+display_name: "Trae IDE"
+enabled: true
+local_path:
+  windows: "%USERPROFILE%\\.trae-cn"
+  linux: "$HOME/.trae-cn"
+  darwin: "$HOME/.trae-cn"
+server_path: "trae"
+categories:
+  skills:
+    local_dir: "builtin"
+    pattern: "**/SKILL.md"
+    priority: high
+  rules:
+    local_dir: "."
+    pattern: "user_rules.md"
+    priority: medium
+ignore:
+  - "**/node_modules/**"
+  - "**/extensions/**"
+  - "**/.git/**"
+  - "**/worktrees/**"
+  - "**/mcps/**"
+on_missing: skip

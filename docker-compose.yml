@@ -1,0 +1,20 @@
+services:
+  skill-sync:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: skill-sync-server
+    ports:
+      - "${PORT:-8080}:8080"
+    volumes:
+      - ./server-data:/app/server-data
+    environment:
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+    command:
+      - --addr
+      - ":8080"
+      - --db
+      - "/app/server-data/sync.db"
+      - --token
+      - "${AUTH_TOKEN:-change-me-in-production}"

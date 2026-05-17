@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Sync</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="app">
+  <header id="header">
+    <h1>Skill Sync</h1>
+    <nav>
+      <button class="tab active" data-tab="dashboard">Dashboard</button>
+      <button class="tab" data-tab="skills">Skills</button>
+      <button class="tab" data-tab="sync">Sync</button>
+      <button class="tab" data-tab="settings">Settings</button>
+    </nav>
+    <div id="status-bar">
+      <span id="conn-status">Connecting...</span>
+      <span id="sync-info"></span>
+    </div>
+  </header>
+
+  <main>
+    <section id="tab-dashboard" class="tab-content active">
+      <div class="grid-3">
+        <div class="card">
+          <h3>Server</h3>
+          <div class="stat" id="stat-revision">--</div>
+          <small>Server Revision</small>
+        </div>
+        <div class="card">
+          <h3>Local</h3>
+          <div class="stat" id="stat-local-files">--</div>
+          <small>Local Files</small>
+        </div>
+        <div class="card">
+          <h3>Sync</h3>
+          <div class="stat" id="stat-sync-status">--</div>
+          <small id="stat-last-sync">Last sync: --</small>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Tools</h3>
+          <div id="tool-list">Loading...</div>
+        </div>
+        <div class="card">
+          <h3>Recommendations</h3>
+          <div id="rec-list">Loading...</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-skills" class="tab-content">
+      <div class="toolbar">
+        <input type="text" id="skill-search" placeholder="Search skills..." />
+        <select id="skill-tool-filter">
+          <option value="">All Tools</option>
+          <option value="claude">Claude Code</option>
+          <option value="opencode">OpenCode</option>
+          <option value="trae">Trae</option>
+        </select>
+        <select id="skill-cat-filter">
+          <option value="">All Categories</option>
+          <option value="skills">Skills</option>
+          <option value="rules">Rules</option>
+          <option value="agents">Agents</option>
+          <option value="commands">Commands</option>
+          <option value="memories">Memories</option>
+        </select>
+      </div>
+      <div id="skill-grid" class="skill-grid">Loading...</div>
+      <div id="skill-detail" class="hidden"></div>
+    </section>
+
+    <section id="tab-sync" class="tab-content">
+      <div class="toolbar">
+        <button id="btn-push" class="btn-primary">Push to Server</button>
+        <button id="btn-pull" class="btn-secondary">Pull from Server</button>
+        <button id="btn-diff" class="btn-ghost">View Diff</button>
+      </div>
+      <div class="card">
+        <h3>Sync Log</h3>
+        <div id="sync-log" class="log-area">Ready</div>
+      </div>
+      <div class="card">
+        <h3>Pending Changes</h3>
+        <div id="pending-changes">None</div>
+      </div>
+    </section>
+
+    <section id="tab-settings" class="tab-content">
+      <div class="card">
+        <h3>Server Connection</h3>
+        <div class="form-group">
+          <label>Server URL</label>
+          <input type="text" id="cfg-server-url" placeholder="http://localhost:8080" />
+        </div>
+        <div class="form-group">
+          <label>Auth Token</label>
+          <input type="password" id="cfg-token" placeholder="API token" />
+        </div>
+        <button id="cfg-save" class="btn-primary">Save & Test</button>
+        <span id="cfg-test-result"></span>
+      </div>
+      <div class="card">
+        <h3>Enabled Tools</h3>
+        <div id="cfg-tools">Loading...</div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>
